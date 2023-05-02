@@ -9,7 +9,11 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+
+% set poster dimensions below (in cm)
+% ACIC poster max size is 42" x 42", or 106.68 cm x 106.68 cm
+% for a 16/9 aspect ratio, using 
+\usepackage[size=custom,width=100,height=56.25,scale=1]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{mit}
 \usepackage{graphicx}
@@ -74,6 +78,7 @@
 
 \footercontent{
   \href{https://www.alexpghayes.com}{https://www.alexpghayes.com} \hfill
+  % \href{https://www.alexpghayes.com}{https://www.alexpghayes.com} \hfill
   ACIC 2023, Austin, TX \hfill
   \href{mailto:alex.hayes@wisc.edu}{alex.hayes@wisc.edu}}
 % (can be left out to remove footer)
@@ -83,7 +88,7 @@
 % ====================
 
 % use this to include logos on the left and/or right side of the header:
-% \logoright{\includegraphics[height=7cm]{logo1.pdf}}
+\logoright{\includegraphics[height=7cm]{figures/uw/color-flush-UWlogo-print.pdf}}
 % \logoleft{\includegraphics[height=7cm]{logo2.pdf}}
 
 % ====================
@@ -98,11 +103,11 @@
 
 \begin{column}{\colwidth}
 
-  \begin{alertblock}{Abstract}
+  % \begin{alertblock}{Abstract}
 
-    Causal inference for network data is an area of active interest in the social sciences. Unfortunately, the complicated dependence structure of network data presents an obstacle to many causal inference procedures. We consider the task of mediation analysis for network data, and present a model in which mediation occurs in a latent embedding space. Under this model, node-level interventions have causal effects on nodal outcomes, and these effects can be partitioned into a direct effect independent of the network, and an indirect effect induced by homophily. To estimate network-mediated effects, we embed nodes into a low-dimensional space and fit two regression models: (1) an outcome model describing how nodal outcomes vary with treatment, controls, and position in latent space; and (2) a mediator model describing how latent positions vary with treatment and controls. We prove that the estimated coefficients are asymptotically normal about the true coefficients under a sub-gamma generalization of the random dot product graph, a widely-used latent space model. We show that these coefficients can be used in product-of-coefficients estimators for causal inference. Our method is easy to implement, scales to networks with millions of edges, and can be extended to accommodate a variety of structured data.
+  %   Causal inference for network data is an area of active interest in the social sciences. Unfortunately, the complicated dependence structure of network data presents an obstacle to many causal inference procedures. We consider the task of mediation analysis for network data, and present a model in which mediation occurs in a latent embedding space. Under this model, node-level interventions have causal effects on nodal outcomes, and these effects can be partitioned into a direct effect independent of the network, and an indirect effect induced by homophily. To estimate network-mediated effects, we embed nodes into a low-dimensional space and fit two regression models: (1) an outcome model describing how nodal outcomes vary with treatment, controls, and position in latent space; and (2) a mediator model describing how latent positions vary with treatment and controls. We prove that the estimated coefficients are asymptotically normal about the true coefficients under a sub-gamma generalization of the random dot product graph, a widely-used latent space model. We show that these coefficients can be used in product-of-coefficients estimators for causal inference. Our method is easy to implement, scales to networks with millions of edges, and can be extended to accommodate a variety of structured data.
 
-\end{alertblock}
+  % \end{alertblock}
 
 \begin{block}{Motivating example: smoking in adolescent social networks}
 
@@ -203,7 +208,13 @@
 
   \end{block}
 
-  \begin{block}{Estimation}
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{\colwidth}
+  
+  \begin{block}{Estimation challenge: friend groups $\X$ unknown!}
     Given a network with adjacency matrix $A$, the $d$-dimensional \emph{adjacency spectral embedding} (ASE) of $A$ is defined as
     \begin{equation*}
         \Xhat = \Uhat \Shat^{1/2} \in \R^{n \times d},
@@ -221,93 +232,71 @@
         = \paren*{\Dhat^T \Dhat}^{-1} \Dhat^T Y.
     \end{equation*}
 
-    % Similarly, we estimate $\Theta$ via ordinary least squares as
-    % \begin{equation*}
-    %     \Thetahat
-    %     = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
-    % \end{equation*}
+    Similarly, we estimate $\Theta$ via ordinary least squares as
+    \begin{equation*}
+        \Thetahat
+        = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
+    \end{equation*}
     
   \end{block}
 
-\end{column}
 
-\separatorcolumn
+  \begin{exampleblock}{Theory}
 
-\begin{column}{\colwidth}
+    
+    \begin{equation*}
+        \begin{aligned}
+            \sqrt{ n } \,
+            \Sigmahattheta^{-1/2}
+            \begin{pmatrix}
+                \vecc \paren*{\Thetahat \, Q_n^T} - \Thetavec
+            \end{pmatrix}
+              & \to
+            \Normal{0}{I_{p d}}, \text{ and } \\
+            \sqrt{ n } \,
+            \Sigmahatbeta^{-1/2}
+            \begin{pmatrix}
+                \betawhat - \betaw \\
+                Q_n \, \betaxhat - \betax
+            \end{pmatrix}
+              & \to
+            \Normal{0}{I_d}.
+        \end{aligned}
+  \end{equation*}
+      
+  % \begin{equation*}
+  %     \sqrt{n \, \sigmahatnde} \paren*{\ndehat - \nde}
+  %     \to
+  %     \Normal{0}{1}.
+  % \end{equation*}
 
-  \begin{exampleblock}{A highlighted block containing some math}
-
-    A different kind of highlighted block.
-
-    $$
-    \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
-    $$
-
-    Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
-    faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
-    felis id vulputate.
-
-    \heading{A heading inside a block}
-
-    Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
-    nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
-    dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
-    congue sed. Maecenas ut dolor quis arcu auctor porttitor.
-
-    \heading{Another heading inside a block}
-
-    Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
-    Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
-    sagittis egestas. Duis eget leo euismod nunc viverra imperdiet nec id
-    justo.
+  % \begin{equation*}
+  %     \sqrt{n \, \sigmahatnie} \paren*{\niehat - \nie}
+  %     \to
+  %     \Normal{0}{1}.
+  % \end{equation*}
 
   \end{exampleblock}
 
-  \begin{block}{Nullam vel erat at velit convallis laoreet}
+  \begin{block}{Results applied to Glasgow data}
 
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
-    scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
-
-    \begin{table}
+    \begin{figure}[ht!]
       \centering
-      \begin{tabular}{l r r c}
-        \toprule
-        \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
-        \midrule
-        Foo & 13.37 & 384,394 & $\alpha$ \\
-        Bar & 2.17 & 1,392 & $\beta$ \\
-        Baz & 3.14 & 83,742 & $\delta$ \\
-        Qux & 7.59 & 974 & $\gamma$ \\
-        \bottomrule
-      \end{tabular}
-      \caption{A table caption.}
-    \end{table}
-
-    Donec quis posuere ligula. Nunc feugiat elit a mi malesuada consequat. Sed
-    imperdiet augue ac nibh aliquet tristique. Aenean eu tortor vulputate,
-    eleifend lorem in, dictum urna. Proin auctor ante in augue tincidunt
-    tempor. Proin pellentesque vulputate odio, ac gravida nulla posuere
-    efficitur. Aenean at velit vel dolor blandit molestie. Mauris laoreet
-    commodo quam, non luctus nibh ullamcorper in. Class aptent taciti sociosqu
-    ad litora torquent per conubia nostra, per inceptos himenaeos.
-
-    Nulla varius finibus volutpat. Mauris molestie lorem tincidunt, iaculis
-    libero at, gravida ante. Phasellus at felis eu neque suscipit suscipit.
-    Integer ullamcorper, dui nec pretium ornare, urna dolor consequat libero,
-    in feugiat elit lorem euismod lacus. Pellentesque sit amet dolor mollis,
-    auctor urna non, tempus sem.
+      \includegraphics[width=0.5\textwidth]{figures/glasgow/effects.png}
+      \caption{Estimated direct and indirect effects of sex on tobacco usage in the Glasgow social network. The estimated effects vary with the dimension $d$ of the latent space, and are adjusted for possibly confounding by age and church attendance. Positive values indicate a greater propensity for adolescent boys to smoke, negative effects a greater propensity for adolescent girls to smoke.}
+      \label{fig:glasgow-estimates}
+  \end{figure}
 
   \end{block}
 
-  \begin{block}{References}
+  % \begin{block}{References}
 
-    This talk is based on a manuscript recently submitted to JRSS-B, available as a pre-print at https://arxiv.org/abs/2212.12041.
+  %   This talk is based on a manuscript recently submitted to JRSS-B, available as a pre-print at https://arxiv.org/abs/2212.12041.
 
-    \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+  %   \nocite{*}
+  %   \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
 
-  \end{block}
+  % \end{block}
 
 \end{column}
 

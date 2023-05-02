@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.8) (format=lualatex 2022.3.30)  1 MAY 2023 16:12
+This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.8) (format=lualatex 2022.3.30)  2 MAY 2023 11:44
  restricted system commands enabled.
  file:line:error style messages enabled.
 **d:/hayes/2023-05-24-acic-poster/poster.tex
@@ -912,14 +912,14 @@ Package beamerposter Info: checking size input, please wait. on input line 130.
 Package beamerposter Info: the input custom\ 6\ was correct, we proceed. on inp
 ut line 130.
 Package beamerposter Info: finished size input check. on input line 130.
-Package beamerposter Info: custom poster width=120 on input line 130.
-Package beamerposter Info: custom poster height=72 on input line 130.
-Package beamerposter Info: myfontscale=1.0 on input line 130.
+Package beamerposter Info: custom poster width=100 on input line 130.
+Package beamerposter Info: custom poster height=56.25 on input line 130.
+Package beamerposter Info: myfontscale=1 on input line 130.
 
 ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-SUB ) ) ( FP-UPN ( FP-SUB ) )
-Package beamerposter Info: paperwidth=3414.3307pt, paperheight=2048.59842pt on 
-input line 173.
-Package beamerposter Info: textwidth=3385.87794pt, textheight=2020.14566pt on i
+Package beamerposter Info: paperwidth=2845.27559pt, paperheight=1600.46751pt on
+ input line 173.
+Package beamerposter Info: textwidth=2816.82283pt, textheight=1572.01476pt on i
 nput line 174.
 Package beamerposter Info: fontscale=1.0, myfontscale=1.00 on input line 175.
 
@@ -1420,39 +1420,45 @@ Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 45.
+Package hyperref Info: Option `colorlinks' set `true' on input line 49.
 \sepwidth=\skip85
 \colwidth=\skip86
+<figures/uw/color-flush-UWlogo-print.pdf, id=10, 433.62pt x 180.675pt>
+File: figures/uw/color-flush-UWlogo-print.pdf Graphic file (type pdf)
+<use figures/uw/color-flush-UWlogo-print.pdf>
+Package luatex.def Info: figures/uw/color-flush-UWlogo-print.pdf  used on input
+ line 91.
+(luatex.def)             Requested size: 478.00903pt x 199.16928pt.
 
 (./poster.aux)
 \openout1 = poster.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 98.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 9
-3.
+8.
 
 (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1462,12 +1468,12 @@ LaTeX Font Info:    ... okay on input line 93.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(72.26999pt, 3269.79073pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 1904.05844pt, 72.26999pt)
-* \paperwidth=3414.3307pt
-* \paperheight=2048.59842pt
-* \textwidth=3269.79073pt
-* \textheight=1875.60571pt
+* h-part:(L,W,R)=(72.26999pt, 2700.73561pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 1455.92754pt, 72.26999pt)
+* \paperwidth=2845.27559pt
+* \paperheight=1600.46751pt
+* \textwidth=2700.73561pt
+* \textheight=1427.47481pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
 * \topmargin=0.0pt
@@ -1514,7 +1520,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 93.
+Package hyperref Info: Link coloring ON on input line 98.
  (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty
@@ -1526,9 +1532,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count387
 )
-LaTeX Info: Redefining \ref on input line 93.
-LaTeX Info: Redefining \pageref on input line 93.
-LaTeX Info: Redefining \nameref on input line 93.
+LaTeX Info: Redefining \ref on input line 98.
+LaTeX Info: Redefining \pageref on input line 98.
+LaTeX Info: Redefining \nameref on input line 98.
  (./poster.out) (./poster.out)
 \@outlinefile=\write5
 
@@ -1566,58 +1572,78 @@ enefit from \pgfplotsset{compat=1.18} (current compat level: 1.14).
 
 (./poster.nav)
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
-3.
+8.
 
 (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
-3.
+8.
 
 (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-93.
+98.
 
 (C:/Users/alex/AppData/Local/Programs/MiKTeX/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `cmex7' loaded for size
-(Font)              <6> on input line 93.
-LaTeX Font Info:    Calculating math sizes for size <35.83> on input line 93.
-<figures/glasgow/sex.png, id=14, 650.43pt x 433.62pt>
+(Font)              <6> on input line 98.
+LaTeX Font Info:    Calculating math sizes for size <35.83> on input line 98.
+File: figures/uw/color-flush-UWlogo-print.pdf Graphic file (type pdf)
+<use figures/uw/color-flush-UWlogo-print.pdf>
+Package luatex.def Info: figures/uw/color-flush-UWlogo-print.pdf  used on input
+ line 98.
+(luatex.def)             Requested size: 478.00903pt x 199.16928pt.
+<figures/glasgow/sex.png, id=15, 650.43pt x 433.62pt>
 File: figures/glasgow/sex.png Graphic file (type png)
 <use figures/glasgow/sex.png>
-Package luatex.def Info: figures/glasgow/sex.png  used on input line 316.
-(luatex.def)             Requested size: 501.91733pt x 334.62286pt.
-<figures/glasgow/tobacco.png, id=15, 650.43pt x 433.62pt>
+Package luatex.def Info: figures/glasgow/sex.png  used on input line 305.
+(luatex.def)             Requested size: 418.26445pt x 278.85239pt.
+<figures/glasgow/tobacco.png, id=16, 650.43pt x 433.62pt>
 File: figures/glasgow/tobacco.png Graphic file (type png)
 <use figures/glasgow/tobacco.png>
-Package luatex.def Info: figures/glasgow/tobacco.png  used on input line 316.
-(luatex.def)             Requested size: 501.91733pt x 334.62286pt.
-<figures/dags/full_mediating.png, id=16, 449.66394pt x 252.945pt>
+Package luatex.def Info: figures/glasgow/tobacco.png  used on input line 305.
+(luatex.def)             Requested size: 418.26445pt x 278.85239pt.
+<figures/dags/full_mediating.png, id=17, 449.66394pt x 252.945pt>
 File: figures/dags/full_mediating.png Graphic file (type png)
 <use figures/dags/full_mediating.png>
-Package luatex.def Info: figures/dags/full_mediating.png  used on input line 31
-6.
-(luatex.def)             Requested size: 614.59201pt x 345.74905pt.
+Package luatex.def Info: figures/dags/full_mediating.png  used on input line 30
+5.
+(luatex.def)             Requested size: 512.16002pt x 288.121pt.
 
-No file poster.bbl.
+Overfull \hbox (13.35222pt too wide) detected at line 305
+[][]
+ []
 
-Overfull \hbox (87.5823pt too wide) detected at line 316
+LaTeX Font Info:    Calculating math sizes for size <29.86> on input line 305.
+<figures/glasgow/effects.png, id=18, 578.16pt x 325.215pt>
+File: figures/glasgow/effects.png Graphic file (type png)
+<use figures/glasgow/effects.png>
+Package luatex.def Info: figures/glasgow/effects.png  used on input line 305.
+(luatex.def)             Requested size: 426.79567pt x 240.06976pt.
+
+Overfull \hbox (87.59103pt too wide) detected at line 305
 [][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][
 ][] [][][][][][][][][] [][][][][][][][][] [][][][][][][] 
  []
 
 
-Overfull \vbox (134.30437pt too high) detected at line 316
+Overfull \vbox (229.09702pt too high) detected at line 305
  []
 
+File: figures/uw/color-flush-UWlogo-print.pdf Graphic file (type pdf)
+<use figures/uw/color-flush-UWlogo-print.pdf>
+Package luatex.def Info: figures/uw/color-flush-UWlogo-print.pdf  used on input
+ line 305.
+(luatex.def)             Requested size: 478.00903pt x 199.16928pt.
 [1{C:/Users/alex/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
-<./figures/glasgow/sex.png><./figures/glasgow/tobacco.png><./figures/dags/full_m
-ediating.png>]
+<./figures/uw/color-flush-UWlogo-print.pdf><./figures/glasgow/sex.png><./figures
+/glasgow/tobacco.png><./figures/dags/full_mediating.png><./figures/glasgow/effec
+ts.png>]
 \tf@nav=\write6
 
 \openout6 = poster.nav
@@ -1634,35 +1660,32 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 41488 strings out of 478106
- 381549,1648299 words of node,token memory allocated
- 95682 words of node memory still in use:
-   906 hlist, 118 vlist, 114 rule, 519 disc, 90 local_par, 286 math, 2386 glue, 
-1172 kern, 255 penalty, 6434 glyph, 1637 attribute, 84 glue_spec, 1637 attribute
-_list, 9 write, 176 pdf_literal, 2 pdf_dest, 298 pdf_colorstack, 3 pdf_setmatrix
-, 3 pdf_save, 3 pdf_restore nodes
-   avail lists: 1:1,2:413,3:1366,4:1057,5:3610,6:278,7:27782,8:54,9:3537,10:28,1
-1:1561
- 59990 multiletter control sequences out of 65536+600000
- 157 fonts using 22540503 bytes
- 128i,23n,128p,1366b,1195s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Windows/Fonts/latoweb-regular.ttf>{C:/Users/alex/AppData/Local/Programs/MiKT
-eX/fonts/enc/dvips/lm/lm-rm.enc}<C:/Windows/Fonts/latoweb-bold.ttf><C:/Windows/F
-onts/latoweb-lightitalic.ttf>{C:/Users/alex/AppData/Local/Programs/MiKTeX/fonts/
-enc/dvips/lm/lm-mathsy.enc}{C:/Users/alex/AppData/Local/Programs/MiKTeX/fonts/en
-c/dvips/lm/lm-mathit.enc}<C:/Windows/Fonts/latoweb-light.ttf><C:/Users/alex/AppD
-ata/Local/Microsoft/Windows/Fonts/raleway-regular.ttf><C:/Users/alex/AppData/Loc
-al/Microsoft/Windows/Fonts/raleway-bold.ttf><C:/Users/alex/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/alex/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/alex/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/alex/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/alex/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/alex/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/alex/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on poster.pdf (1 page, 2961087 bytes).
+ 41524 strings out of 478106
+ 305239,1648299 words of node,token memory allocated
+ 66999 words of node memory still in use:
+   907 hlist, 128 vlist, 109 rule, 281 disc, 73 local_par, 285 math, 1759 glue, 
+775 kern, 224 penalty, 3745 glyph, 1515 attribute, 84 glue_spec, 1515 attribute_
+list, 11 write, 160 pdf_literal, 3 pdf_dest, 244 pdf_colorstack, 5 pdf_setmatrix
+, 5 pdf_save, 5 pdf_restore nodes
+   avail lists: 2:437,3:1249,4:895,5:2419,6:227,7:17831,8:53,9:3555,10:22,11:847
 
-PDF statistics: 105 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 131072)
+ 60003 multiletter control sequences out of 65536+600000
+ 182 fonts using 23371743 bytes
+ 128i,23n,128p,1368b,1196s stack positions out of 5000i,500n,10000p,200000b,80000s
+<C:/Windows/Fonts/latoweb-lightitalic.ttf>{C:/Users/alex/AppData/Local/Programs/
+MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/alex/AppData/Local/Programs/Mi
+KTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/alex/AppData/Local/Programs/MiKTeX/f
+onts/enc/dvips/lm/lm-mathit.enc}<C:/Windows/Fonts/latoweb-light.ttf><C:/Users/al
+ex/AppData/Local/Microsoft/Windows/Fonts/raleway-regular.ttf><C:/Users/alex/AppD
+ata/Local/Microsoft/Windows/Fonts/raleway-bold.ttf><C:/Users/alex/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/alex/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/alex/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/alex/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/alex/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on poster.pdf (1 page, 4030034 bytes).
+
+PDF statistics: 124 PDF objects out of 1000 (max. 8388607)
+ 6 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
