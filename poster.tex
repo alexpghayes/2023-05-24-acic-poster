@@ -175,9 +175,9 @@
 
       \begin{block}{Semi-parametric network model}
 
-        Let $A \in \R^{n \times n}$ be a random symmetric matrix, such as the adjacency matrix of an undirected graph. Let $\Apop = \E[\X]{A} = \X \X^T$ be the expectation of $A$ conditional on $\X \in \R^{n \times d}$, which has independent and identically distributed rows $\X_{1 \cdot}, \dots, \X_{n \cdot}$. That is, $\Apop$ has $\rank \paren*{\Apop} = d$ and is positive semi-definite with eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d > 0 = \lambda_{d+1} = \cdots = \lambda_n$. Conditional on $\X$, the upper-triangular elements of $A - \Apop$ are independent $(\nu_n, b_n)$-sub-gamma random variables.
+        Let $A \in \R^{n \times n}$ be a random matrix, such as the adjacency matrix of an undirected graph. Let $\Apop = \E[\X]{A} = \X \X^T$ be the expectation of $A$ conditional on $\X \in \R^{n \times d}$, which has independent and identically distributed rows $\X_{1 \cdot}, \dots, \X_{n \cdot}$. That is, $\Apop$ has $\rank \paren*{\Apop} = d$ with eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d > 0 = \lambda_{d+1} = \cdots = \lambda_n$. Conditional on $\X$, the upper-triangular elements of $A - \Apop$ are independent $(\nu_n, b_n)$-sub-gamma random variables.
 
-        Examples: (degree-corrected) stochastic blockmodels, mixed-membership blockmodels, overlapping blockmodels, (weighted, noisily-observed) random dot product graphs, LDA, factor models, etc
+        \textbf{Examples:} (degree-corrected, mixed-membership) stochastic blockmodels, overlapping blockmodels, (weighted, noisily-observed) random dot product graphs, LDA, factor models, etc
 
         The outcome regression functional is linear in $T_i, \C_{i \cdot}$, and $\X_{i \cdot}$ and the mediator regression functional is linear in $T_i, \C_{i \cdot}$, and $T_i \cdot \C_{i \cdot}$:
 
@@ -207,14 +207,31 @@
 
       \begin{block}{Estimation challenge: friend groups $\X$ unknown!}
 
-        The \emph{adjacency spectral embedding} (ASE) of $A$ is well-known to be a good estimate of $\X$ under a broad, semi-parametric class of network models. Given a network with adjacency matrix $A$, the $d$-dimensional ASE is defined as
+        The \emph{adjacency spectral embedding} (ASE) of $A$ is well-known estimate of $\X$ under the network model described above, defined as
         \begin{equation*}
           \Xhat = \Uhat \Shat^{1/2} \in \R^{n \times d},
         \end{equation*}
-        where $\Uhat \Shat \Uhat^T$ is the rank-$d$ truncated singular value decomposition of $A$. Under a suitably well-behaved network model, if $d$ is correctly specified or consistently estimated, there is some $d \times d$ orthogonal matrix $Q$ such that
+        where $\Uhat \Shat \Uhat^T$ is the rank-$d$ truncated singular value decomposition of $A$. Under a suitably well-behaved model, if $d$ is correctly specified, there is an orthogonal matrix $Q$ such that
         \begin{equation*}
           \max_{i \in [n]} \, \norm*{\Xhat_{i \cdot} - \X_{i \cdot} Q} = \op{1}.
         \end{equation*}
+        Let $\Dhat = \begin{bmatrix} 1 & T & \C& \Xhat \end{bmatrix} \in \R^{n \times (2 + p + d)}$ and $\Wfull = \begin{bmatrix} 1 & T & \C & T \cdot \C \end{bmatrix} \in \R^{n \times (2 p + 2)}$. We estimate $\betaw$, $\betax$ and $\Theta$ via ordinary least squares as follows
+        \begin{equation*}
+          \begin{bmatrix}
+            \betawhat \\
+            \betaxhat
+          \end{bmatrix}
+          = \paren*{\Dhat^T \Dhat}^{-1} \Dhat^T Y
+          \quad \text{and} \quad
+          \Thetahat
+          = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
+        \end{equation*}
+        To estimate $\nde$ and $\nie$, let $\widehat{\mu}_c$ be the sample mean of $\C_{i \cdot}$ and combine regression coefficients from the network regression models
+        \begin{align*}
+          \cdehat  = \ndehat = \paren*{t - t^*} \, \betathat                                                                               
+          \quad \text{and} \quad
+          \niehat  = \paren*{t - t^*} \, \thetathat \, \betaxhat + \paren*{t - t^*} \cdot \widehat{\mu}_c \cdot \Thetatchat \, \betaxhat,
+        \end{align*}
       \end{block}
 
 
@@ -223,30 +240,6 @@
     \separatorcolumn
 
     \begin{column}{\colwidth}
-
-      \begin{block}{Estimation: plug in $\Xhat$ for $\X$}
-        Let $\Dhat = \begin{bmatrix} 1 & T & \C& \Xhat \end{bmatrix} \in \R^{n \times (2 + p + d)}$ and $\Wfull = \begin{bmatrix} 1 & T & \C & T \cdot \C \end{bmatrix} \in \R^{n \times (2 p + 2)}$. We estimate $\betaw$ and $\betax$ via ordinary least squares as follows
-        \begin{equation*}
-          \begin{bmatrix}
-            \betawhat \\
-            \betaxhat
-          \end{bmatrix}
-          = \paren*{\Dhat^T \Dhat}^{-1} \Dhat^T Y.
-        \end{equation*}
-
-        Similarly, we estimate $\Theta$ via ordinary least squares as
-        \begin{equation*}
-          \Thetahat
-          = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
-        \end{equation*}
-
-        To estimate $\nde$ and $\nie$, we combine regression coefficients from the network regression models
-        \begin{align*}
-          \cdehat & = \ndehat = \paren*{t - t^*} \, \betathat                                                                              & \text{and} \\
-          \niehat & = \paren*{t - t^*} \, \thetathat \, \betaxhat + \paren*{t - t^*} \cdot \widehat{\mu}_c \cdot \Thetatchat \, \betaxhat,
-        \end{align*}
-        where $\widehat{\mu}_c$ is the sample mean of $\C_{i \cdot}$.
-      \end{block}
 
       \begin{exampleblock}{Theory}
 
@@ -274,10 +267,10 @@
         Further,
         \begin{align*}
           \sqrt{n \, \sigmahatnde} \paren*{\ndehat - \nde}
-           & \to
-          \Normal{0}{1}, \text{and} \\
+            &\to
+          \Normal{0}{1}, \qquad \text{and} \\
           \sqrt{n \, \sigmahatnie} \paren*{\niehat - \nie}
-           & \to
+           &\to
           \Normal{0}{1},
         \end{align*}
         where $\sigmahatnde$ and $\sigmahatnie$ are derived via the Delta method.
@@ -286,23 +279,35 @@
 
       \begin{block}{Results applied to Glasgow data}
 
-        \begin{figure}[ht!]
-          \centering
-          \includegraphics[width=0.5\textwidth]{figures/glasgow/effects.png}
-          \caption{Estimated direct and indirect effects of sex on tobacco usage in the Glasgow social network. The estimated effects vary with the dimension $d$ of the latent space, and are adjusted for possibly confounding by age and church attendance. Positive values indicate a greater propensity for adolescent boys to smoke, negative effects a greater propensity for adolescent girls to smoke.}
-          \label{fig:glasgow-estimates}
-        \end{figure}
+        
+        \begin{minipage}{.4\textwidth}
+
+          \begin{itemize}
+            \item Estimated effects are adjusted for possible confounding by age and church attendance.
+            \item Estimated effects vary with the chosen dimension $d$ of the latent space
+            \item Over-specifying $d$ is typically okay, but under-specifying $d$ leads to a failure to capture social structure in $\X$
+            \item Once we capture enough social structure in $\X$, we see a significant indirect social effect that leads adolescent girls to smoke more
+          \end{itemize}
+
+        \end{minipage}
+        \begin{minipage}{.6\textwidth}
+
+          \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=\textwidth]{figures/glasgow/effects.png}
+            \caption{Estimated direct and indirect effects of sex on tobacco usage in the Glasgow social network. Positive values indicate a greater propensity for adolescent boys to smoke, negative effects a greater propensity for adolescent girls to smoke.}
+            \label{fig:glasgow-estimates}
+          \end{figure}
+
+        \end{minipage}
 
       \end{block}
 
-      % \begin{block}{References}
+      \begin{block}{References}
 
-      %   This talk is based on a manuscript recently submitted to JRSS-B, available as a pre-print at https://arxiv.org/abs/2212.12041.
+        Hayes, Alex, Mark M. Fredrickson, and Keith Levin. ``Estimating Network-Mediated Causal Effects via Spectral Embeddings.'' arXiv, April 14, 2023. \texttt{http://arxiv.org/abs/2212.12041.}
 
-      %   \nocite{*}
-      %   \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
-
-      % \end{block}
+      \end{block}
 
     \end{column}
 
