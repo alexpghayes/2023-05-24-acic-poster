@@ -98,221 +98,221 @@
 \begin{document}
 
 \begin{frame}[t]
-  \begin{columns}[t]
-    \separatorcolumn
+    \begin{columns}[t]
+        \separatorcolumn
 
-    \begin{column}{\colwidth}
+        \begin{column}{\colwidth}
 
-      \begin{alertblock}{Abstract}
+            \begin{alertblock}{Abstract}
 
-        We consider the task of mediation analysis for network data, and present a model in which mediation occurs in a latent embedding space. Under this model, node-level interventions have causal effects on nodal outcomes, and these effects can be partitioned into a direct effect independent of the network, and an indirect effect induced by homophily.
+                We consider the task of mediation analysis for network data, and present a model in which mediation occurs in a latent embedding space. Under this model, node-level interventions have causal effects on nodal outcomes, and these effects can be partitioned into a direct effect independent of the network, and an indirect effect induced by homophily.
 
-      \end{alertblock}
+            \end{alertblock}
 
-      \begin{block}{Motivating example: smoking in adolescent social networks}
+            \begin{block}{Motivating example: smoking in adolescent social networks}
 
-        \begin{figure}[ht!]
-          \begin{subfigure}{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figures/glasgow/sex.png}
-          \end{subfigure}
-          \begin{subfigure}{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figures/glasgow/tobacco.png}
-          \end{subfigure}
-          \caption{Directed friendships in a secondary school in Glasgow, reported in the Teenage Friends and Lifestyle Study (wave 1). Each node represents one student.}
-          \label{fig:glasgow}
-        \end{figure}
+                \begin{figure}[ht!]
+                    \begin{subfigure}{0.49\textwidth}
+                        \centering
+                        \includegraphics[width=\textwidth]{figures/glasgow/sex.png}
+                    \end{subfigure}
+                    \begin{subfigure}{0.49\textwidth}
+                        \centering
+                        \includegraphics[width=\textwidth]{figures/glasgow/tobacco.png}
+                    \end{subfigure}
+                    \caption{Directed friendships in a secondary school in Glasgow, reported in the Teenage Friends and Lifestyle Study (wave 1). Each node represents one student.}
+                    \label{fig:glasgow}
+                \end{figure}
 
-      \end{block}
-
-
-      \begin{block}{Notation \& inferential targets}
-
-        \begin{minipage}{.5\textwidth}
-
-          \centering
-
-          We assume we have a (symmetric) network with nodes $1, ..., n$.
-
-          \vspace{1cm}
-
-          \begin{table}[]
-            \begin{tabular}{lcc}
-              Network adjacency matrix & $A$            & $\in \R^{n \times n}$ \\
-              Edge $i \sim j$          & $A_{ij}$       & $\in \R$              \\
-              Treatment                & $T_i$          & $\in \set{0, 1} $     \\
-              Outcome                  & $Y_i$          & $\in \R$              \\
-              Confounders              & $\C_{i \cdot}$ & $\in \R^p$            \\
-              Friend group (latent)    & $\X_{i \cdot}$ & $\in \R^d$
-            \end{tabular}
-          \end{table}
-
-        \end{minipage}
-        \begin{minipage}{.5\textwidth}
-
-          \begin{figure}[ht]
-            \centering
-            \includegraphics[width=\textwidth]{figures/dags/full_mediating.png}
-            \caption{A directed acyclic graph (DAG) representing the causal pathways in a network with homophilous mediation, for node a network with two nodes called $i$ and $j$.}
-            \label{fig:mediating}
-          \end{figure}
-
-        \end{minipage}
-
-        We are interested in the causal effect of $T_i$ on $Y_i$ as mediated by the latent position $\X_{i \cdot}$. More precisely, we want to estimate the \emph{natural direct effect} and the \emph{natural indirect effect}
-        \begin{align*}
-          \ndef & = \E{Y_i(t, \X_{i \cdot}(t^*)) - Y_i(t^*, \X_{i \cdot}(t^*))} \\
-          \nief & = \E{Y_i(t, \X_{i \cdot}(t)) - Y_i(t, \X_{i \cdot}(t^*))}
-        \end{align*}
-      \end{block}
-
-    \end{column}
-
-    \separatorcolumn
-
-    \begin{column}{\colwidth}
-
-      \begin{block}{Semi-parametric network model}
-
-        Let $A \in \R^{n \times n}$ be a random matrix, such as the adjacency matrix of an undirected graph. Let $\Apop = \E[\X]{A} = \X \X^T$ be the expectation of $A$ conditional on $\X \in \R^{n \times d}$, which has independent and identically distributed rows $\X_{1 \cdot}, \dots, \X_{n \cdot}$. That is, $\Apop$ has $\rank \paren*{\Apop} = d$ with eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d > 0 = \lambda_{d+1} = \cdots = \lambda_n$. Conditional on $\X$, the upper-triangular elements of $A - \Apop$ are independent $(\nu_n, b_n)$-sub-gamma random variables.
-
-        \textbf{Examples:} (degree-corrected, mixed-membership) stochastic blockmodels, overlapping blockmodels, (weighted, noisily-observed) random dot product graphs, LDA, factor models, etc
-
-        The outcome regression functional is linear in $T_i, \C_{i \cdot}$, and $\X_{i \cdot}$ and the mediator regression functional is linear in $T_i, \C_{i \cdot}$, and $T_i \cdot \C_{i \cdot}$:
-
-        \begin{equation*}
-          \begin{aligned}
-            \underbrace{\E[T_i, \C_{i \cdot}, \X_{i \cdot}]{Y_i}}_{\R}
-             & = \underbrace{\betazero}_{\R}
-            + \underbrace{T_i}_{\{0, 1\}} \underbrace{\betat}_{\R}
-            + \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\betac}_{\R^{p}}
-            + \underbrace{\X_{i \cdot}}_{\R^{1 \times d}} \underbrace{\betax}_{\R^d},
-             & \text{(outcome model)}                      \\
-            \underbrace{\E[T_i, \C_{i \cdot}]{\X_{i \cdot}}}_{\R^{1 \times d}}
-             & = \underbrace{\thetazero}_{\R^{1 \times d}}
-            + \underbrace{T_i}_{\{0, 1\}} \underbrace{\thetat}_{\R^{1 \times d}}
-            + \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\Thetac}_{\R^{p \times d}}
-            + \underbrace{T_i}_{\{0, 1\}} \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\Thetatc}_{\R^{p \times d}}.
-             & \text{(mediator model)}
-          \end{aligned}
-        \end{equation*}
-
-        Under these moment assumptions, and DAG of Figure \ref{fig:mediating}, letting $\mu_c$ denote the mean of $\C_{i \cdot}$, we have the following identification result:
-        \begin{align*}
-          \ndef & = \paren*{t - t^*} \, \betat, ~ \text{ and }                                        \\
-          \nief & = \paren*{t - t^*} \, \thetat \, \betax + (t - t^*) \, \mu_c \, \Thetatc \, \betax.
-        \end{align*}
-      \end{block}
-
-      \begin{block}{Estimation challenge: friend groups $\X$ unknown!}
-
-        The \emph{adjacency spectral embedding} (ASE) of $A$ is well-known estimate of $\X$ under the network model described above, defined as
-        \begin{equation*}
-          \Xhat = \Uhat \Shat^{1/2} \in \R^{n \times d},
-        \end{equation*}
-        where $\Uhat \Shat \Uhat^T$ is the rank-$d$ truncated singular value decomposition of $A$. Under a suitably well-behaved model, if $d$ is correctly specified, there is an orthogonal matrix $Q$ such that
-        \begin{equation*}
-          \max_{i \in [n]} \, \norm*{\Xhat_{i \cdot} - \X_{i \cdot} Q} = \op{1}.
-        \end{equation*}
-        Let $\Dhat = \begin{bmatrix} 1 & T & \C& \Xhat \end{bmatrix} \in \R^{n \times (2 + p + d)}$ and $\Wfull = \begin{bmatrix} 1 & T & \C & T \cdot \C \end{bmatrix} \in \R^{n \times (2 p + 2)}$. We estimate $\betaw$, $\betax$ and $\Theta$ via ordinary least squares as follows
-        \begin{equation*}
-          \begin{bmatrix}
-            \betawhat \\
-            \betaxhat
-          \end{bmatrix}
-          = \paren*{\Dhat^T \Dhat}^{-1} \Dhat^T Y
-          \quad \text{and} \quad
-          \Thetahat
-          = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
-        \end{equation*}
-        To estimate $\nde$ and $\nie$, let $\widehat{\mu}_c$ be the sample mean of $\C_{i \cdot}$ and combine regression coefficients from the network regression models
-        \begin{align*}
-          \cdehat  = \ndehat = \paren*{t - t^*} \, \betathat                                                                               
-          \quad \text{and} \quad
-          \niehat  = \paren*{t - t^*} \, \thetathat \, \betaxhat + \paren*{t - t^*} \cdot \widehat{\mu}_c \cdot \Thetatchat \, \betaxhat,
-        \end{align*}
-      \end{block}
+            \end{block}
 
 
-    \end{column}
+            \begin{block}{Notation \& inferential targets}
 
-    \separatorcolumn
+                \begin{minipage}{.5\textwidth}
 
-    \begin{column}{\colwidth}
+                    \centering
 
-      \begin{exampleblock}{Theory}
+                    We assume we have a (symmetric) network with nodes $1, ..., n$.
 
-        Under a suitable network model and moment bounds on the regression errors, there exists a sequence of orthogonal matrices $\set{Q_n}_{n=1}^\infty$ such that
+                    \vspace{1cm}
 
-        \begin{equation*}
-          \begin{aligned}
-            \sqrt{ n } \,
-            \Sigmahattheta^{-1/2}
-            \begin{pmatrix}
-              \vecc \paren*{\Thetahat \, Q_n^T} - \Thetavec
-            \end{pmatrix}
-             & \to
-            \Normal{0}{I_{p d}}, \text{ and } \\
-            \sqrt{ n } \,
-            \Sigmahatbeta^{-1/2}
-            \begin{pmatrix}
-              \betawhat - \betaw \\
-              Q_n \, \betaxhat - \betax
-            \end{pmatrix}
-             & \to
-            \Normal{0}{I_d}.
-          \end{aligned}
-        \end{equation*}
-        Further,
-        \begin{align*}
-          \sqrt{n \, \sigmahatnde} \paren*{\ndehat - \nde}
-            &\to
-          \Normal{0}{1}, \qquad \text{and} \\
-          \sqrt{n \, \sigmahatnie} \paren*{\niehat - \nie}
-           &\to
-          \Normal{0}{1},
-        \end{align*}
-        where $\sigmahatnde$ and $\sigmahatnie$ are derived via the Delta method.
+                    \begin{table}[]
+                        \begin{tabular}{lcc}
+                            Network adjacency matrix & $A$            & $\in \R^{n \times n}$ \\
+                            Edge $i \sim j$          & $A_{ij}$       & $\in \R$              \\
+                            Treatment                & $T_i$          & $\in \set{0, 1} $     \\
+                            Outcome                  & $Y_i$          & $\in \R$              \\
+                            Confounders              & $\C_{i \cdot}$ & $\in \R^p$            \\
+                            Friend group (latent)    & $\X_{i \cdot}$ & $\in \R^d$
+                        \end{tabular}
+                    \end{table}
 
-      \end{exampleblock}
+                \end{minipage}
+                \begin{minipage}{.5\textwidth}
 
-      \begin{block}{Results applied to Glasgow data}
+                    \begin{figure}[ht]
+                        \centering
+                        \includegraphics[width=\textwidth]{figures/dags/full_mediating.png}
+                        \caption{A directed acyclic graph (DAG) representing the causal pathways in a network with homophilous mediation, for node a network with two nodes called $i$ and $j$.}
+                        \label{fig:mediating}
+                    \end{figure}
 
-        
-        \begin{minipage}{.4\textwidth}
+                \end{minipage}
 
-          \begin{itemize}
-            \item Estimated effects are adjusted for possible confounding by age and church attendance.
-            \item Estimated effects vary with the chosen dimension $d$ of the latent space
-            \item Over-specifying $d$ is typically okay, but under-specifying $d$ leads to a failure to capture social structure in $\X$
-            \item Once we capture enough social structure in $\X$, we see a significant indirect social effect that leads adolescent girls to smoke more
-          \end{itemize}
+                We are interested in the causal effect of $T_i$ on $Y_i$ as mediated by the latent position $\X_{i \cdot}$. More precisely, we want to estimate the \emph{natural direct effect} and the \emph{natural indirect effect}
+                \begin{align*}
+                    \ndef & = \E{Y_i(t, \X_{i \cdot}(t^*)) - Y_i(t^*, \X_{i \cdot}(t^*))} \\
+                    \nief & = \E{Y_i(t, \X_{i \cdot}(t)) - Y_i(t, \X_{i \cdot}(t^*))}
+                \end{align*}
+            \end{block}
 
-        \end{minipage}
-        \begin{minipage}{.6\textwidth}
+        \end{column}
 
-          \begin{figure}[ht!]
-            \centering
-            \includegraphics[width=\textwidth]{figures/glasgow/effects.png}
-            \caption{Estimated direct and indirect effects of sex on tobacco usage in the Glasgow social network. Positive values indicate a greater propensity for adolescent boys to smoke, negative effects a greater propensity for adolescent girls to smoke.}
-            \label{fig:glasgow-estimates}
-          \end{figure}
+        \separatorcolumn
 
-        \end{minipage}
+        \begin{column}{\colwidth}
 
-      \end{block}
+            \begin{block}{Semi-parametric network model}
 
-      \begin{block}{References}
+                Let $A \in \R^{n \times n}$ be a random matrix, such as the adjacency matrix of an undirected graph. Let $\Apop = \E[\X]{A} = \X \X^T$ be the expectation of $A$ conditional on $\X \in \R^{n \times d}$, which has independent and identically distributed rows $\X_{1 \cdot}, \dots, \X_{n \cdot}$. That is, $\Apop$ has $\rank \paren*{\Apop} = d$ with eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d > 0 = \lambda_{d+1} = \cdots = \lambda_n$. Conditional on $\X$, the upper-triangular elements of $A - \Apop$ are independent $(\nu_n, b_n)$-sub-gamma random variables.
 
-        Hayes, Alex, Mark M. Fredrickson, and Keith Levin. ``Estimating Network-Mediated Causal Effects via Spectral Embeddings.'' arXiv, April 14, 2023. \texttt{http://arxiv.org/abs/2212.12041.}
+                \textbf{Examples:} (degree-corrected, mixed-membership) stochastic blockmodels, overlapping blockmodels, (weighted, noisily-observed) random dot product graphs, LDA, factor models, etc
 
-      \end{block}
+                The outcome regression functional is linear in $T_i, \C_{i \cdot}$, and $\X_{i \cdot}$ and the mediator regression functional is linear in $T_i, \C_{i \cdot}$, and $T_i \cdot \C_{i \cdot}$:
 
-    \end{column}
+                \begin{equation*}
+                    \begin{aligned}
+                        \underbrace{\E[T_i, \C_{i \cdot}, \X_{i \cdot}]{Y_i}}_{\R}
+                         & = \underbrace{\betazero}_{\R}
+                        + \underbrace{T_i}_{\{0, 1\}} \underbrace{\betat}_{\R}
+                        + \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\betac}_{\R^{p}}
+                        + \underbrace{\X_{i \cdot}}_{\R^{1 \times d}} \underbrace{\betax}_{\R^d},
+                         & \text{(outcome model)}                      \\
+                        \underbrace{\E[T_i, \C_{i \cdot}]{\X_{i \cdot}}}_{\R^{1 \times d}}
+                         & = \underbrace{\thetazero}_{\R^{1 \times d}}
+                        + \underbrace{T_i}_{\{0, 1\}} \underbrace{\thetat}_{\R^{1 \times d}}
+                        + \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\Thetac}_{\R^{p \times d}}
+                        + \underbrace{T_i}_{\{0, 1\}} \underbrace{\C_{i \cdot}}_{\R^{1 \times p}} \underbrace{\Thetatc}_{\R^{p \times d}}.
+                         & \text{(mediator model)}
+                    \end{aligned}
+                \end{equation*}
 
-    \separatorcolumn
-  \end{columns}
+                Under these moment assumptions, and DAG of Figure \ref{fig:mediating}, letting $\mu_c$ denote the mean of $\C_{i \cdot}$, we have the following identification result:
+                \begin{align*}
+                    \ndef & = \paren*{t - t^*} \, \betat, ~ \text{ and }                                        \\
+                    \nief & = \paren*{t - t^*} \, \thetat \, \betax + (t - t^*) \, \mu_c \, \Thetatc \, \betax.
+                \end{align*}
+            \end{block}
+
+            \begin{block}{Estimation challenge: friend groups $\X$ unknown!}
+
+                The \emph{adjacency spectral embedding} (ASE) of $A$ is well-known estimate of $\X$ under the network model described above, defined as
+                \begin{equation*}
+                    \Xhat = \Uhat \Shat^{1/2} \in \R^{n \times d},
+                \end{equation*}
+                where $\Uhat \Shat \Uhat^T$ is the rank-$d$ truncated singular value decomposition of $A$. Under a suitably well-behaved model, if $d$ is correctly specified, there is an orthogonal matrix $Q$ such that
+                \begin{equation*}
+                    \max_{i \in [n]} \, \norm*{\Xhat_{i \cdot} - \X_{i \cdot} Q} = \op{1}.
+                \end{equation*}
+                Let $\Dhat = \begin{bmatrix} 1 & T & \C& \Xhat \end{bmatrix} \in \R^{n \times (2 + p + d)}$ and $\Wfull = \begin{bmatrix} 1 & T & \C & T \cdot \C \end{bmatrix} \in \R^{n \times (2 p + 2)}$. We estimate $\betaw$, $\betax$ and $\Theta$ via ordinary least squares as follows
+                \begin{equation*}
+                    \begin{bmatrix}
+                        \betawhat \\
+                        \betaxhat
+                    \end{bmatrix}
+                    = \paren*{\Dhat^T \Dhat}^{-1} \Dhat^T Y
+                    \quad \text{and} \quad
+                    \Thetahat
+                    = \paren*{\Wfull^T \Wfull}^{-1} \Wfull^T \Xhat.
+                \end{equation*}
+                To estimate $\nde$ and $\nie$, let $\widehat{\mu}_c$ be the sample mean of $\C_{i \cdot}$ and combine regression coefficients from the network regression models
+                \begin{align*}
+                    \cdehat  = \ndehat = \paren*{t - t^*} \, \betathat
+                    \quad \text{and} \quad
+                    \niehat  = \paren*{t - t^*} \, \thetathat \, \betaxhat + \paren*{t - t^*} \cdot \widehat{\mu}_c \cdot \Thetatchat \, \betaxhat,
+                \end{align*}
+            \end{block}
+
+
+        \end{column}
+
+        \separatorcolumn
+
+        \begin{column}{\colwidth}
+
+            \begin{exampleblock}{Theory}
+
+                Under a suitable network model and moment bounds on the regression errors, there exists a sequence of orthogonal matrices $\set{Q_n}_{n=1}^\infty$ such that
+
+                \begin{equation*}
+                    \begin{aligned}
+                        \sqrt{ n } \,
+                        \Sigmahattheta^{-1/2}
+                        \begin{pmatrix}
+                            \vecc \paren*{\Thetahat \, Q_n^T} - \Thetavec
+                        \end{pmatrix}
+                         & \to
+                        \Normal{0}{I_{p d}}, \text{ and } \\
+                        \sqrt{ n } \,
+                        \Sigmahatbeta^{-1/2}
+                        \begin{pmatrix}
+                            \betawhat - \betaw \\
+                            Q_n \, \betaxhat - \betax
+                        \end{pmatrix}
+                         & \to
+                        \Normal{0}{I_d}.
+                    \end{aligned}
+                \end{equation*}
+                Further,
+                \begin{align*}
+                    \sqrt{n \, \sigmahatnde} \paren*{\ndehat - \nde}
+                     & \to
+                    \Normal{0}{1}, \qquad \text{and} \\
+                    \sqrt{n \, \sigmahatnie} \paren*{\niehat - \nie}
+                     & \to
+                    \Normal{0}{1},
+                \end{align*}
+                where $\sigmahatnde$ and $\sigmahatnie$ are derived via the Delta method.
+
+            \end{exampleblock}
+
+            \begin{block}{Results applied to Glasgow data}
+
+
+                \begin{minipage}{.4\textwidth}
+
+                    \begin{itemize}
+                        \item Estimated effects are adjusted for possible confounding by age and church attendance.
+                        \item Estimated effects vary with the chosen dimension $d$ of the latent space
+                        \item Over-specifying $d$ is typically okay, but under-specifying $d$ leads to a failure to capture social structure in $\X$
+                        \item Once we capture enough social structure in $\X$, we see a significant indirect social effect that leads adolescent girls to smoke more
+                    \end{itemize}
+
+                \end{minipage}
+                \begin{minipage}{.6\textwidth}
+
+                    \begin{figure}[ht!]
+                        \centering
+                        \includegraphics[width=\textwidth]{figures/glasgow/effects.png}
+                        \caption{Estimated direct and indirect effects of sex on tobacco usage in the Glasgow social network. Positive values indicate a greater propensity for adolescent boys to smoke, negative effects a greater propensity for adolescent girls to smoke.}
+                        \label{fig:glasgow-estimates}
+                    \end{figure}
+
+                \end{minipage}
+
+            \end{block}
+
+            \begin{block}{References}
+
+                Hayes, Alex, Mark M. Fredrickson, and Keith Levin. ``Estimating Network-Mediated Causal Effects via Spectral Embeddings.'' arXiv, April 14, 2023. \texttt{http://arxiv.org/abs/2212.12041.}
+
+            \end{block}
+
+        \end{column}
+
+        \separatorcolumn
+    \end{columns}
 \end{frame}
 
 \end{document}
